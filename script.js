@@ -132,6 +132,10 @@
     const collapseAllBtn = document.getElementById('collapse-all-btn');
     const pasteBtn = document.getElementById('paste-btn');
 
+    // View Toggle Buttons
+    const viewFullBtn = document.getElementById('view-full-btn');
+    const viewKeysBtn = document.getElementById('view-keys-btn');
+
     // State
     let currentJson = null;
 
@@ -152,6 +156,21 @@
         if (jsonTree.firstChild) collapseAll(jsonTree);
     });
 
+    // View Toggle Handlers
+    if (viewFullBtn && viewKeysBtn) {
+        viewFullBtn.addEventListener('click', () => {
+            jsonTree.classList.remove('view-keys-only');
+            viewFullBtn.classList.add('active');
+            viewKeysBtn.classList.remove('active');
+        });
+
+        viewKeysBtn.addEventListener('click', () => {
+            jsonTree.classList.add('view-keys-only');
+            viewKeysBtn.classList.add('active');
+            viewFullBtn.classList.remove('active');
+        });
+    }
+
     function handleInputChange(e) {
         const inputValue = e.target.value.trim();
 
@@ -166,6 +185,9 @@
             const parsed = JSON.parse(inputValue);
             currentJson = parsed;
             showTree(parsed);
+
+            // Re-apply view mode if needed (though CSS handles it via class on container)
+
             inputStatus.textContent = 'Valid JSON';
             inputStatus.style.color = 'var(--success-color)';
         } catch (err) {
