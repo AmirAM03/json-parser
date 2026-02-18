@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Parser & Viewer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M10 12L8 14L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M14 12L16 14L14 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <h1>JSON Viewer</h1>
+            </div>
+            <div class="actions">
+                <a href="https://github.com/AmirAM03/json-parser" target="_blank" class="github-link"
+                    aria-label="View on GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="pane input-pane">
+                <div class="pane-header">
+                    <h2>Input JSON</h2>
+                    <div class="toolbar">
+                        <button id="paste-btn" class="tool-btn" title="Paste from Clipboard">Paste</button>
+                        <button id="format-btn" class="tool-btn" title="Format JSON">Format</button>
+                        <button id="clear-btn" class="tool-btn" title="Clear Input">Clear</button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <textarea id="json-input" placeholder="Paste your JSON here..." spellcheck="false"></textarea>
+                </div>
+                <div class="pane-footer">
+                    <span id="input-status">Ready</span>
+                </div>
+            </section>
+
+            <section class="pane output-pane">
+                <div class="pane-header">
+                    <h2>Tree View</h2>
+                    <div class="toolbar-right">
+                        <button id="expand-all-btn" class="tool-btn">Expand All</button>
+                        <button id="collapse-all-btn" class="tool-btn">Collapse All</button>
+                        <!-- <button id="copy-btn" class="tool-btn primary">Copy Data</button> -->
+                    </div>
+                </div>
+                <div id="viewer-container" class="viewer-container">
+                    <div id="json-tree" class="json-tree"></div>
+                    <div id="error-view" class="error-view hidden">
+                        <div class="error-icon">⚠️</div>
+                        <h3 class="error-title">Invalid JSON</h3>
+                        <p id="error-message" class="error-message"></p>
+                    </div>
+                    <div id="empty-view" class="empty-view">
+                        <p>Paste JSON to view tree</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
